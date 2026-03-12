@@ -646,18 +646,21 @@
           <div class="split-item">Brand alignment audit</div>
           <div class="split-item">End-to-end funnel testing & QA</div>
           <div class="split-item">UTM parameter implementation across funnel</div>
+          <div class="split-item">GTM setup: all tags, triggers, variables</div>
+          <div class="split-item">Google Business Profile setup & optimisation</div>
         </div>
       </div>
       <div class="split-col">
         <div class="split-head sean">
           <span class="split-head-name">Sean</span>
-          <span class="split-head-role">Meta Platform & Tracking</span>
+          <span class="split-head-role">Ads Platforms & Tracking</span>
         </div>
         <div class="split-body">
           <div class="split-item">Meta Ads account audit & restructure</div>
-          <div class="split-item">Pixel setup & conversion event verification</div>
+          <div class="split-item">Meta Pixel setup & conversion event verification</div>
           <div class="split-item">GA4 tracking stack setup</div>
-          <div class="split-item">Campaign structure & audience research</div>
+          <div class="split-item">Meta campaign structure & audience research</div>
+          <div class="split-item">Google Ads account setup & campaign structure</div>
           <div class="split-item">Pre-launch technical checklist</div>
           <div class="split-item">Performance reporting template</div>
           <div class="split-item">Client communication & weekly reporting</div>
@@ -665,7 +668,7 @@
       </div>
     </div>
     <div class="card" style="margin-top:16px; border-left: 3px solid var(--gold);">
-      <p><strong>On the split logic:</strong> both own the strategic layer. Antonio takes the tasks that require patience and precision: mapping every funnel step, tagging every URL, catching every broken trigger before launch. Sean takes the platform work: Meta account structure, pixel, audience builds, reporting infrastructure. Volume balances. Work plays to strengths.</p>
+      <p><strong>On the split logic:</strong> both own the strategic layer. Antonio takes the tasks that require patience and precision: mapping every funnel step, configuring every GTM tag and trigger, tagging every URL, catching every broken trigger before launch. Sean runs the ad platforms: Meta and Google Ads account structure, pixel, audience builds, reporting infrastructure. Volume balances. Work plays to strengths.</p>
     </div>
   </section>
 
@@ -705,6 +708,18 @@
             <td class="td-notes">Document what exists, what's broken, what to cut</td>
           </tr>
           <tr>
+            <td class="td-day">1–2</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Google Ads account audit: check if account exists, current campaigns, conversion tracking status</td>
+            <td class="td-notes">If no account exists, flag immediately — setup adds time to week 2</td>
+          </tr>
+          <tr>
+            <td class="td-day">2–3</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>GTM audit: check if container exists, what tags and triggers are live, what's firing incorrectly</td>
+            <td class="td-notes">GTM misconfiguration breaks attribution across every channel. Audit before touching anything.</td>
+          </tr>
+          <tr>
             <td class="td-day">2–3</td>
             <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
             <td>Audit AI for Chefs product: positioning, pricing, page copy</td>
@@ -724,6 +739,12 @@
           </tr>
           <tr>
             <td class="td-day">3–4</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Google Business Profile audit: is it claimed, verified, complete? Check category, description, photos</td>
+            <td class="td-notes">A chef academy with no GBP or a half-filled one kills local credibility. Fix it before any traffic runs.</td>
+          </tr>
+          <tr>
+            <td class="td-day">3–4</td>
             <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
             <td>Tracking stack: GA4 setup, UTM parameter framework, naming conventions</td>
             <td class="td-notes">Build attribution layer before any spend starts</td>
@@ -738,7 +759,7 @@
             <td class="td-day">4–5</td>
             <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
             <td>Audience research: interest stacks, lookalike seed lists, cold audience plan</td>
-            <td class="td-notes">Hospitality professionals AU — chefs, kitchen leaders, culinary students</td>
+            <td class="td-notes">Hospitality professionals AU: chefs, kitchen leaders, culinary students</td>
           </tr>
           <tr>
             <td class="td-day">5–6</td>
@@ -755,7 +776,7 @@
           <tr>
             <td class="td-day">7</td>
             <td class="td-owner"><span class="owner-pill owner-both">Both</span></td>
-            <td>Week 1 sync with Ricardo — present audit findings, confirm direction</td>
+            <td>Week 1 sync with Ricardo: present audit findings, confirm direction</td>
             <td class="td-notes">Keep it direct. Show what exists, what changes, what launches in week 2</td>
           </tr>
         </tbody>
@@ -794,9 +815,27 @@
           </tr>
           <tr>
             <td class="td-day">8–9</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>GTM full build: configure all tags (Meta Pixel, Google Ads conversion, GA4), triggers, and variables</td>
+            <td class="td-notes">Every tag through GTM. Test in preview mode before publishing. No tag fires without verification.</td>
+          </tr>
+          <tr>
+            <td class="td-day">8–9</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Google Business Profile: complete all fields, upload photos, set correct category and service areas</td>
+            <td class="td-notes">Category: education or professional training. Description in Ricardo's voice. Brand photos only.</td>
+          </tr>
+          <tr>
+            <td class="td-day">8–9</td>
             <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
             <td>Build campaign shells in Meta Ads: cold audience + retargeting ready to activate</td>
             <td class="td-notes">Hold budget until creative is approved and pixel is clean</td>
+          </tr>
+          <tr>
+            <td class="td-day">9–10</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Google Ads campaign build: search campaigns targeting hospitality professionals, conversion tracking linked</td>
+            <td class="td-notes">Search intent complements Meta cold traffic. Link GA4 before activating.</td>
           </tr>
           <tr>
             <td class="td-day">9–10</td>
@@ -896,6 +935,9 @@
           <tr><td>Pixel + conversion events verified across all pages</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 4</span></td></tr>
           <tr><td>Tracking stack: GA4 + UTM framework live</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 5</span></td></tr>
           <tr><td>Meta Ads account restructured: campaigns ready to activate</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 10</span></td></tr>
+          <tr><td>Google Ads campaigns built and linked to GA4</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 10</span></td></tr>
+          <tr><td>GTM container fully configured: all tags, triggers, variables tested and published</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 9</span></td></tr>
+          <tr><td>Google Business Profile complete: all fields, photos, category, description</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 9</span></td></tr>
           <tr><td>UTM parameters implemented across all funnel URLs</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 10</span></td></tr>
           <tr><td>End-to-end funnel test passed</td><td><span class="owner-pill owner-antonio">Antonio</span></td><td><span class="deadline-pill">Day 12</span></td></tr>
           <tr><td>Cold and lookalike audience builds complete in Meta</td><td><span class="owner-pill owner-sean">Sean</span></td><td><span class="deadline-pill">Day 12</span></td></tr>
