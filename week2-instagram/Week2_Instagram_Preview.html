@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef's Office Academy — Week 2 Instagram Posts Preview</title>
+<style>
+  /* ── Reset & base ────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1B2844;
+    --gold:   #C7A86D;
+    --gold-l: #DCB97C;
+    --white:  #FFFFFF;
+    --bg:     #0E1523;
+    --surface:#141D30;
+    --border: #243050;
+    --text:   #C8D0DC;
+    --muted:  #6B7A96;
+    --ig-blue:#0095F6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── Header ─────────────────────────────────────────── */
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #0F1926 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .page-header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+  .page-header h1 span { color: var(--gold); }
+  .week-badge {
+    background: var(--gold);
+    color: #000;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  /* ── Nav tabs ────────────────────────────────────────── */
+  .day-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 28px 24px 0;
+  }
+  .day-nav a {
+    text-decoration: none;
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: all .2s;
+  }
+  .day-nav a:hover {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ── Post section ────────────────────────────────────── */
+  .posts-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    padding: 48px 24px 80px;
+  }
+
+  .post-section {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .day-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding: 0 4px;
+  }
+  .day-pill {
+    background: var(--gold);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .day-pill.wed { background: #6BA3D6; }
+  .day-pill.fri { background: #7C6DB5; }
+  .day-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Phone frame ─────────────────────────────────────── */
+  .phone-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04);
+  }
+
+  /* Instagram top bar */
+  .ig-topbar {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ig-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: #000;
+    flex-shrink: 0;
+    border: 2px solid var(--gold);
+  }
+  .ig-handle {
+    flex: 1;
+  }
+  .ig-handle .username {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .ig-handle .location {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+  .ig-more {
+    color: var(--muted);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+
+  /* Carousel */
+  .carousel-wrap {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    background: #0a0e18;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform .35s cubic-bezier(.4,0,.2,1);
+    height: 100%;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+  }
+
+  /* Prev / Next arrows */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10,14,24,.75);
+    border: 1px solid rgba(255,255,255,.12);
+    color: var(--white);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background .2s;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+  }
+  .carousel-btn:hover { background: rgba(199,168,109,.3); border-color: var(--gold); }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+
+  /* Slide counter badge */
+  .slide-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,.55);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+  }
+
+  /* Dots */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 0 6px;
+    background: var(--surface);
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background .25s, transform .25s;
+    cursor: pointer;
+  }
+  .dot.active {
+    background: var(--ig-blue);
+    transform: scale(1.2);
+  }
+
+  /* Action bar */
+  .ig-actions {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px 6px;
+    gap: 14px;
+  }
+  .ig-action {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: color .2s;
+  }
+  .ig-action:hover { color: var(--white); }
+  .ig-action svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+  .ig-bookmark { margin-left: auto; }
+
+  /* Likes */
+  .ig-likes {
+    padding: 2px 14px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  /* Caption */
+  .ig-caption {
+    padding: 2px 14px 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text);
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .ig-caption::-webkit-scrollbar { width: 4px; }
+  .ig-caption::-webkit-scrollbar-track { background: transparent; }
+  .ig-caption::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .ig-caption b { color: var(--white); font-weight: 700; }
+  .ig-caption .more { color: var(--muted); cursor: pointer; }
+  .hashtags { margin-top: 10px; color: var(--ig-blue); font-size: 12px; line-height: 1.8; }
+
+  /* ── Thumbnail strip ─────────────────────────────────── */
+  .thumb-strip {
+    display: flex;
+    gap: 6px;
+    padding: 16px 14px;
+    border-top: 1px solid var(--border);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .thumb-strip::-webkit-scrollbar { display: none; }
+  .thumb {
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity .2s, box-shadow .2s;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    border: 2px solid transparent;
+  }
+  .thumb.active, .thumb:hover {
+    opacity: 1;
+    border-color: var(--gold);
+  }
+
+  /* ── Footer ──────────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  footer span { color: var(--gold); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────── -->
+<header class="page-header">
+  <h1>Chef's Office Academy &mdash; <span>Week 2 Content Preview</span></h1>
+  <div class="week-badge">Tue · Thu · Fri — Week 2</div>
+</header>
+
+<!-- ── Day nav ─────────────────────────────────────────── -->
+<nav class="day-nav">
+  <a href="#tuesday">📅 Tuesday · Food Cost</a>
+  <a href="#thursday">📅 Thursday · Leadership</a>
+  <a href="#friday">📅 Friday · Founding Members</a>
+</nav>
+
+<!-- ── Posts ───────────────────────────────────────────── -->
+<main class="posts-grid">
+
+  <!-- ════════════════════════════════════════════════════
+       MONDAY — FOOD COST
+  ════════════════════════════════════════════════════ -->
+  <section class="post-section" id="tuesday">
+    <div class="day-label">
+      <span class="day-pill">Tuesday</span>
+      <span class="day-title">Food Cost — Running Blind (5 slides)</span>
+    </div>
+
+    <div class="phone-card">
+      <!-- Top bar -->
+      <div class="ig-topbar">
+        <div class="ig-avatar">CO</div>
+        <div class="ig-handle">
+          <div class="username">chefsoffice_au</div>
+          <div class="location">Chef's Office Australia</div>
+        </div>
+        <span class="ig-more">•••</span>
+      </div>
+
+      <!-- Carousel -->
+      <div class="carousel-wrap" id="c-mon">
+        <div class="carousel-track" id="t-mon">
+          <div class="carousel-slide"><img src="MON_01_running_blind.png" alt="Slide 1 – Running Blind" draggable="false"></div>
+          <div class="carousel-slide"><img src="MON_02_what_is_food_cost.png" alt="Slide 2 – What is Food Cost" draggable="false"></div>
+          <div class="carousel-slide"><img src="MON_03_the_blind_spot.png" alt="Slide 3 – The Blind Spot" draggable="false"></div>
+          <div class="carousel-slide"><img src="MON_04_your_first_step.png" alt="Slide 4 – Your First Step" draggable="false"></div>
+          <div class="carousel-slide"><img src="MON_05_stop_reacting.png" alt="Slide 5 – Stop Reacting" draggable="false"></div>
+        </div>
+        <button class="carousel-btn prev" onclick="move('mon',-1)">&#8249;</button>
+        <button class="carousel-btn next" onclick="move('mon',1)">&#8250;</button>
+        <div class="slide-badge" id="b-mon">1 / 5</div>
+      </div>
+
+      <!-- Dots -->
+      <div class="carousel-dots" id="d-mon">
+        <div class="dot active" onclick="goTo('mon',0)"></div>
+        <div class="dot" onclick="goTo('mon',1)"></div>
+        <div class="dot" onclick="goTo('mon',2)"></div>
+        <div class="dot" onclick="goTo('mon',3)"></div>
+        <div class="dot" onclick="goTo('mon',4)"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="ig-actions">
+        <span class="ig-action">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </span>
+        <span class="ig-action">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </span>
+        <span class="ig-action">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </span>
+        <span class="ig-action ig-bookmark" style="margin-left:auto">
+          <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        </span>
+      </div>
+
+      <!-- Likes -->
+      <div class="ig-likes">342 likes</div>
+
+      <!-- Caption -->
+      <div class="ig-caption">
+        <b>chefsoffice_au</b> Most chefs run a kitchen without ever knowing their real food cost. They plate the dish, they serve it, they hope the numbers work out at the end of the month.<br><br>
+        They usually don't.<br><br>
+        This week in the Academy, we're breaking down food cost from scratch: what it is, how to calculate it, and why it's the difference between a chef who survives and one who builds something.<br><br>
+        Swipe through to see what running blind costs you, and what knowing your numbers looks like.<br><br>
+        👇 Drop a comment: do you know your current food cost percentage?<br><br>
+        <span class="hashtags">#chefsofficeacademy #foodcost #chefbusiness #restaurantmanagement #culinaryeducation #cheflife #kitchenleadership #hospitalityaustralia #restaurantowners #cheftraining</span>
+      </div>
+
+      <!-- Thumbnail strip -->
+      <div class="thumb-strip" id="s-mon">
+        <img class="thumb active" src="MON_01_running_blind.png" onclick="goTo('mon',0)" alt="">
+        <img class="thumb" src="MON_02_what_is_food_cost.png" onclick="goTo('mon',1)" alt="">
+        <img class="thumb" src="MON_03_the_blind_spot.png" onclick="goTo('mon',2)" alt="">
+        <img class="thumb" src="MON_04_your_first_step.png" onclick="goTo('mon',3)" alt="">
+        <img class="thumb" src="MON_05_stop_reacting.png" onclick="goTo('mon',4)" alt="">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       WEDNESDAY — LEADERSHIP
+  ════════════════════════════════════════════════════ -->
+  <section class="post-section" id="thursday">
+    <div class="day-label">
+      <span class="day-pill wed">Thursday</span>
+      <span class="day-title">Leadership — The 5-Second Rule (5 slides)</span>
+    </div>
+
+    <div class="phone-card">
+      <div class="ig-topbar">
+        <div class="ig-avatar">CO</div>
+        <div class="ig-handle">
+          <div class="username">chefsoffice_au</div>
+          <div class="location">Chef's Office Australia</div>
+        </div>
+        <span class="ig-more">•••</span>
+      </div>
+
+      <div class="carousel-wrap" id="c-wed">
+        <div class="carousel-track" id="t-wed">
+          <div class="carousel-slide"><img src="WED_01_five_seconds.png" alt="Slide 1" draggable="false"></div>
+          <div class="carousel-slide"><img src="WED_02_chefs_react.png" alt="Slide 2" draggable="false"></div>
+          <div class="carousel-slide"><img src="WED_03_how_to_pause.png" alt="Slide 3" draggable="false"></div>
+          <div class="carousel-slide"><img src="WED_04_your_team_watching.png" alt="Slide 4" draggable="false"></div>
+          <div class="carousel-slide"><img src="WED_05_leadership_learnable.png" alt="Slide 5" draggable="false"></div>
+        </div>
+        <button class="carousel-btn prev" onclick="move('wed',-1)">&#8249;</button>
+        <button class="carousel-btn next" onclick="move('wed',1)">&#8250;</button>
+        <div class="slide-badge" id="b-wed">1 / 5</div>
+      </div>
+
+      <div class="carousel-dots" id="d-wed">
+        <div class="dot active" onclick="goTo('wed',0)"></div>
+        <div class="dot" onclick="goTo('wed',1)"></div>
+        <div class="dot" onclick="goTo('wed',2)"></div>
+        <div class="dot" onclick="goTo('wed',3)"></div>
+        <div class="dot" onclick="goTo('wed',4)"></div>
+      </div>
+
+      <div class="ig-actions">
+        <span class="ig-action"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span>
+        <span class="ig-action"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+        <span class="ig-action"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>
+        <span class="ig-action ig-bookmark" style="margin-left:auto"><svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></span>
+      </div>
+
+      <div class="ig-likes">287 likes</div>
+
+      <div class="ig-caption">
+        <b>chefsoffice_au</b> A chef I know used to freeze whenever something went wrong during service. Pans dropped. Orders backed up. His team looked to him and watched him panic.<br><br>
+        Then he learned one thing: take 5 seconds before reacting.<br><br>
+        Not to hesitate. To respond with intention instead of emotion.<br><br>
+        Swipe through to see how those 5 seconds can change the culture of your kitchen, and what it looks like when a chef becomes a leader.<br><br>
+        👇 Have you ever said something in the kitchen you immediately wished you hadn't?<br><br>
+        <span class="hashtags">#chefsofficeacademy #kitchenleadership #chefleader #restaurantculture #hospitalityleadership #cheflife #kitchenteam #leadershipskills #cheftraining #culinaryeducation</span>
+      </div>
+
+      <div class="thumb-strip" id="s-wed">
+        <img class="thumb active" src="WED_01_five_seconds.png" onclick="goTo('wed',0)" alt="">
+        <img class="thumb" src="WED_02_chefs_react.png" onclick="goTo('wed',1)" alt="">
+        <img class="thumb" src="WED_03_how_to_pause.png" onclick="goTo('wed',2)" alt="">
+        <img class="thumb" src="WED_04_your_team_watching.png" onclick="goTo('wed',3)" alt="">
+        <img class="thumb" src="WED_05_leadership_learnable.png" onclick="goTo('wed',4)" alt="">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════
+       FRIDAY — FOUNDING MEMBERS
+  ════════════════════════════════════════════════════ -->
+  <section class="post-section" id="friday">
+    <div class="day-label">
+      <span class="day-pill fri">Friday</span>
+      <span class="day-title">Founding Members — The Business Side (4 slides)</span>
+    </div>
+
+    <div class="phone-card">
+      <div class="ig-topbar">
+        <div class="ig-avatar">CO</div>
+        <div class="ig-handle">
+          <div class="username">chefsoffice_au</div>
+          <div class="location">Chef's Office Australia</div>
+        </div>
+        <span class="ig-more">•••</span>
+      </div>
+
+      <div class="carousel-wrap" id="c-fri">
+        <div class="carousel-track" id="t-fri">
+          <div class="carousel-slide"><img src="FRI_01_not_theory.png" alt="Slide 1" draggable="false"></div>
+          <div class="carousel-slide"><img src="FRI_02_what_you_get.png" alt="Slide 2" draggable="false"></div>
+          <div class="carousel-slide"><img src="FRI_03_who_its_for.png" alt="Slide 3" draggable="false"></div>
+          <div class="carousel-slide"><img src="FRI_04_business_side.png" alt="Slide 4" draggable="false"></div>
+        </div>
+        <button class="carousel-btn prev" onclick="move('fri',-1)">&#8249;</button>
+        <button class="carousel-btn next" onclick="move('fri',1)">&#8250;</button>
+        <div class="slide-badge" id="b-fri">1 / 4</div>
+      </div>
+
+      <div class="carousel-dots" id="d-fri">
+        <div class="dot active" onclick="goTo('fri',0)"></div>
+        <div class="dot" onclick="goTo('fri',1)"></div>
+        <div class="dot" onclick="goTo('fri',2)"></div>
+        <div class="dot" onclick="goTo('fri',3)"></div>
+      </div>
+
+      <div class="ig-actions">
+        <span class="ig-action"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span>
+        <span class="ig-action"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+        <span class="ig-action"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>
+        <span class="ig-action ig-bookmark" style="margin-left:auto"><svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></span>
+      </div>
+
+      <div class="ig-likes">194 likes</div>
+
+      <div class="ig-caption">
+        <b>chefsoffice_au</b> Every chef knows the feeling. You're technically brilliant. You work harder than anyone in the room. And somehow you're still not getting ahead.<br><br>
+        Chef's Office Academy was built for exactly that moment.<br><br>
+        Real tools, built for people who run kitchens: food cost, leadership, menu engineering, supplier negotiations, and the systems that let a great chef also run a great business.<br><br>
+        Founding membership is still open. This is the lowest rate we'll ever offer. It locks you in to everything we build.<br><br>
+        Swipe through to see exactly what you get.<br><br>
+        🔗 <a href="https://www.chefsoffice.com.au/academy" style="color:#6BA3D6;text-decoration:none;">chefsoffice.com.au/academy</a> — founding spots are limited. Closing soon.<br><br>
+        <span class="hashtags">#chefsofficeacademy #foundingmember #chefbusiness #restaurantowners #hospitalityaustralia #cheftraining #culinaryeducation #kitchenmanagement #cheflife #restaurantbusiness</span>
+      </div>
+
+      <div class="thumb-strip" id="s-fri">
+        <img class="thumb active" src="FRI_01_not_theory.png" onclick="goTo('fri',0)" alt="">
+        <img class="thumb" src="FRI_02_what_you_get.png" onclick="goTo('fri',1)" alt="">
+        <img class="thumb" src="FRI_03_who_its_for.png" onclick="goTo('fri',2)" alt="">
+        <img class="thumb" src="FRI_04_business_side.png" onclick="goTo('fri',3)" alt="">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Chef's Office Australia Executive Academy &mdash; <span>Week 2 Instagram Content</span><br>
+  <small style="opacity:.5;font-size:10px;letter-spacing:.08em">Prepared by Caruso Martech</small>
+</footer>
+
+<!-- ── Carousel JS ───────────────────────────────────── -->
+<script>
+  const state = {
+    mon: { current: 0, total: 5 },
+    wed: { current: 0, total: 5 },
+    fri: { current: 0, total: 4 },
+  };
+
+  function update(id) {
+    const s = state[id];
+    const track = document.getElementById('t-' + id);
+    const badge = document.getElementById('b-' + id);
+    const dots  = document.getElementById('d-' + id).querySelectorAll('.dot');
+    const thumbs = document.getElementById('s-' + id).querySelectorAll('.thumb');
+
+    track.style.transform = `translateX(-${s.current * 100}%)`;
+    badge.textContent = `${s.current + 1} / ${s.total}`;
+
+    dots.forEach((d, i) => d.classList.toggle('active', i === s.current));
+    thumbs.forEach((t, i) => t.classList.toggle('active', i === s.current));
+  }
+
+  function move(id, dir) {
+    const s = state[id];
+    s.current = (s.current + dir + s.total) % s.total;
+    update(id);
+  }
+
+  function goTo(id, idx) {
+    state[id].current = idx;
+    update(id);
+  }
+
+  // Touch / swipe support
+  const carousels = { mon: 'c-mon', wed: 'c-wed', fri: 'c-fri' };
+  Object.entries(carousels).forEach(([id, cid]) => {
+    const el = document.getElementById(cid);
+    let startX = 0;
+    el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    el.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) move(id, dx < 0 ? 1 : -1);
+    }, { passive: true });
+  });
+
+  // Keyboard arrow navigation (focus on window)
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') {
+      ['mon','wed','fri'].forEach(id => {
+        if (document.getElementById('c-' + id).matches(':hover')) move(id, 1);
+      });
+    }
+    if (e.key === 'ArrowLeft') {
+      ['mon','wed','fri'].forEach(id => {
+        if (document.getElementById('c-' + id).matches(':hover')) move(id, -1);
+      });
+    }
+  });
+</script>
+</body>
+</html>
