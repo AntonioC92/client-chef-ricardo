@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef's Office — Email Sequences Campaigns Copy — 23rd April</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f0ece4; font-family: 'DM Sans', sans-serif; color: #333; line-height: 1.6; }
+
+  .site-header { background: #141c2e; padding: 0; position: relative; overflow: hidden; }
+  .site-header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(199,168,109,0.03) 40px, rgba(199,168,109,0.03) 41px); }
+  .header-inner { max-width: 1060px; margin: 0 auto; padding: 56px 48px 48px; position: relative; }
+  .brand-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: #C7A86D; text-transform: uppercase; margin-bottom: 16px; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.6vw, 44px); font-weight: 900; color: #fff; line-height: 1.1; }
+  .header-title span { color: #C7A86D; }
+  .header-sub { font-size: 15px; color: #E6D9C3; opacity: 0.85; margin-top: 14px; font-weight: 300; max-width: 720px; line-height: 1.7; }
+  .gold-bar { height: 3px; background: linear-gradient(90deg, #C7A86D, transparent); }
+
+  .main { max-width: 1060px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  .how-to { background: #fff; border-radius: 10px; border: 1px solid rgba(31,42,68,0.09); padding: 24px 28px; margin-bottom: 32px; }
+  .how-to h2 { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #C7A86D; text-transform: uppercase; margin-bottom: 14px; }
+  .how-to ol { padding-left: 20px; margin: 0; }
+  .how-to ol li { font-size: 14px; line-height: 1.75; color: #333; margin-bottom: 6px; }
+  .how-to ol li strong { color: #1F2A44; }
+  .how-to code { background: #f0ece4; font-family: 'DM Mono', monospace; font-size: 12px; padding: 2px 6px; border-radius: 3px; color: #1F2A44; }
+
+  .section-hd { display: flex; align-items: center; gap: 14px; margin: 40px 0 20px 0; }
+  .section-hd .num { font-family: 'DM Mono', monospace; font-size: 11px; color: #C7A86D; letter-spacing: 0.15em; min-width: 28px; }
+  .section-hd .title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #1F2A44; }
+  .section-hd .line { flex: 1; height: 1px; background: rgba(31,42,68,0.12); }
+
+  .campaign-meta { background: #1F2A44; border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; color: #E6D9C3; font-size: 13.5px; line-height: 1.75; }
+  .campaign-meta strong { color: #fff; }
+  .campaign-meta code { background: rgba(199,168,109,0.15); color: #C7A86D; font-family: 'DM Mono', monospace; font-size: 12px; padding: 2px 7px; border-radius: 3px; }
+
+  .email-card { background: #fff; border-radius: 10px; border: 1px solid rgba(31,42,68,0.09); margin-bottom: 20px; overflow: hidden; }
+  .email-card-hd { background: #f8f6f2; padding: 14px 20px; border-bottom: 1px solid rgba(31,42,68,0.07); display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .pill { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 3px 9px; border-radius: 3px; font-weight: 500; }
+  .pill-step { background: #1F2A44; color: #C7A86D; }
+  .pill-delay { background: #f0ece4; color: #1F2A44; }
+  .pill-new { background: #C7A86D; color: #1F2A44; }
+  .pill-keep { background: #e6f3e6; color: #2E7D32; }
+  .email-title { font-family: 'Playfair Display', serif; font-size: 16px; color: #1F2A44; font-weight: 700; margin-left: auto; }
+
+  .paste-field { padding: 14px 20px; border-bottom: 1px solid rgba(31,42,68,0.07); }
+  .paste-field:last-child { border-bottom: none; }
+  .paste-field-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #C7A86D; text-transform: uppercase; margin-bottom: 6px; }
+  .paste-field-value { font-family: 'DM Sans', sans-serif; color: #1F2A44; line-height: 1.7; white-space: pre-wrap; background: #fafaf7; padding: 14px 16px; border-radius: 6px; border: 1px dashed rgba(31,42,68,0.15); user-select: text; }
+  .paste-field-value.subject { font-size: 15.5px; font-weight: 600; }
+  .paste-field-value.preview { font-size: 14.5px; font-style: italic; color: #555; }
+  .paste-field-value.body { font-size: 14.5px; line-height: 1.75; }
+
+  .note { background: #f5f0e8; border-left: 3px solid #C7A86D; padding: 12px 16px; margin: 14px 20px 14px 20px; font-size: 13px; color: #6b7280; border-radius: 0 4px 4px 0; line-height: 1.7; }
+  .note strong { color: #1F2A44; }
+  .note code { background: #1F2A44; color: #C7A86D; font-family: 'DM Mono', monospace; font-size: 11px; padding: 2px 7px; border-radius: 3px; }
+
+  .warn { background: #fdf4f4; border-left: 3px solid #8b3333; padding: 12px 16px; margin: 14px 20px 14px 20px; font-size: 13px; color: #5a2626; border-radius: 0 4px 4px 0; line-height: 1.7; }
+  .warn strong { color: #8b3333; }
+  .warn code { background: #8b3333; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; padding: 2px 7px; border-radius: 3px; }
+
+  .checklist { background: #fff; border-radius: 10px; border: 1px solid rgba(31,42,68,0.09); padding: 20px 24px; margin-bottom: 20px; }
+  .checklist h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: #1F2A44; margin-bottom: 12px; }
+  .checklist ol { padding-left: 22px; }
+  .checklist ol li { font-size: 14px; line-height: 1.8; color: #333; margin-bottom: 10px; }
+  .checklist ol li strong { color: #1F2A44; }
+  .checklist code { background: #f0ece4; font-family: 'DM Mono', monospace; font-size: 12px; padding: 2px 6px; border-radius: 3px; color: #1F2A44; }
+
+  @media (max-width: 720px) {
+    .header-inner, .main { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-eyebrow">Chef's Office Academy — 23 April 2026</div>
+    <h1 class="header-title">Email Sequences <span>Campaigns Copy</span></h1>
+    <p class="header-sub">All three live Systeme campaigns, unified in one document. Fifteen emails total across <strong>Founding Members – Cohort 01 – Recruitment</strong> (4 new), <strong>COA – Paid Ebook Delivery &amp; Ascension</strong> (1 keep + 4 new), and <strong>COA – Ebook – Core Sequence</strong> (6 rebuilt, replacing the 12 legacy emails). Each email has a <strong>Subject</strong>, <strong>Preview text</strong>, and <strong>Body</strong> block in its own dashed box for clean copy-paste into Systeme.</p>
+  </div>
+  <div class="gold-bar"></div>
+</header>
+
+<main class="main">
+
+  <!-- HOW TO USE -->
+  <div class="how-to">
+    <h2>How to use this doc</h2>
+    <ol>
+      <li><strong>Open the campaign in Systeme</strong>: <code>Emails › Campaigns › [campaign name]</code>.</li>
+      <li>Scroll to the bottom of the existing steps. Click <strong>+ Add step</strong> → <strong>Email</strong>.</li>
+      <li>Set the <strong>Delay</strong> to the one shown on the email card below.</li>
+      <li>Copy the <strong>Subject</strong> block, paste into Systeme's subject field.</li>
+      <li>Copy the <strong>Preview text</strong> block, paste into Systeme's preview / preheader field.</li>
+      <li>Copy the <strong>Body</strong> block, paste into the email body. Systeme's default editor handles plain paste cleanly.</li>
+      <li>Leave every step <strong>inactive</strong>. Save.</li>
+      <li>Repeat for every email in order. Ricardo swaps the new steps in for the old ones once he's reviewed.</li>
+    </ol>
+  </div>
+
+
+  <!-- TAG AUDIT -->
+  <div class="section-hd">
+    <span class="num">00</span>
+    <span class="title">Before anything activates — tag audit (Sean)</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="checklist">
+    <h3>Three things to verify in Systeme before flipping anything live</h3>
+    <ol>
+      <li><strong>Which purchase triggers the Paid Ebook Delivery sequence?</strong> Go to <code>Contacts › Segments / Tags</code> and find <code>paid-ebook-buyer</code> (or equivalent). Trace back to the product. If it fires on both the Business-Minded Chef AND the Leadership ebook ("You Don't Need to Be an Asshole to Lead a Kitchen"), that explains the current E4 subject <em>"When leadership doesn't make sense"</em> — the sequence was written for a mixed audience. Fix: split into two sequences, one per product.</li>
+      <li><strong>Volume anomaly — 121 Core Sequence sends vs 5 Paid Ebook Delivery sends.</strong> Either the buyer tag isn't firing at checkout, or buyers are landing in the Core Sequence instead. Check <code>Products › [ebook] › Automations</code> — confirm a "tag contact with <code>paid-ebook-buyer</code>" rule exists on purchase. Then check Core Sequence entry conditions — they should <em>exclude</em> <code>paid-ebook-buyer</code>.</li>
+      <li><strong>Mutual exclusion on the Core Sequence.</strong> <code>Emails › Campaigns › COA – Ebook – Core Sequence › Entry conditions</code>. Anyone tagged <code>paid-ebook-buyer</code> should be blocked from entering. If this exclusion isn't there, buyers receive both sequences.</li>
+    </ol>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- CAMPAIGN 1: FOUNDING MEMBERS COHORT 01 RECRUITMENT -->
+  <!-- ============================================================ -->
+  <div class="section-hd">
+    <span class="num">01</span>
+    <span class="title">Campaign: Founding Members – Cohort 01 – Recruitment</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="campaign-meta">
+    <strong>Existing campaign.</strong> Already has 4 live steps. <strong>Do not edit them.</strong> Add 4 new steps at the bottom using the copy below. All delays are measured from the previous new step (or from enrolment for Step 1). Keep every new step <code>inactive</code>. Replace <code>[X]</code> and <code>[specific date]</code> with Ricardo's confirmed values before activating.
+  </div>
+
+  <!-- C1 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 1</span>
+      <span class="pill pill-delay">Day 0</span>
+      <span class="pill pill-new">Pain-first invitation</span>
+      <span class="email-title">The moment the cooking stops being the limit</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">The moment the cooking stops being the limit</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Ten seats. Eight weeks. The business side of the kitchen, applied to your real numbers.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+There's a moment most senior chefs hit where the cooking side of the job stops being what's holding them back, and the business side quietly takes over as the ceiling. You're running your line well, the team respects you, food is consistent — and then someone on the ownership side brings up food cost percentages or labour against trade or the P&amp;L for last quarter, and you find yourself nodding along waiting for the conversation to pass, knowing full well you could run circles around this in the kitchen but can't quite defend yourself in numbers.
+
+That's the exact gap Founding Members is built for, and it's why I'm writing to you specifically. I've been working on this program for months, and I'm running the first cohort of ten chefs starting next month — eight weeks of direct work with me, applied to your actual numbers and your actual kitchen, not a set of theoretical case studies.
+
+Nine seats are still open. Applications close in two weeks, or sooner if the cohort fills before then. If what I described above sounds familiar, take a look at the page below and tell me what you think.
+
+[CTA button: Find out more and apply → links to Founding Members application page]
+
+Ricardo</div>
+    </div>
+  </div>
+
+  <!-- C2 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 2</span>
+      <span class="pill pill-delay">Delay +3 days</span>
+      <span class="pill pill-new">Curriculum by outcome</span>
+      <span class="email-title">What the eight weeks actually cover</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">What the eight weeks actually cover</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Food cost, labour, menu engineering, and the P&amp;L conversation with ownership.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+A few people have asked me to be more specific about what the eight weeks actually cover, which is fair — "business side of the kitchen" is broad enough that you could read it ten different ways. So here's the honest version, week by week.
+
+The first fortnight is food cost and wastage, and I don't mean in theory. You'll pull your real numbers from the last month and we'll work out together where the leaks are, what's tracked properly and what isn't, and you'll come out of those two weeks with a weekly rhythm that actually holds instead of falling apart the second service gets busy.
+
+Weeks three and four move into labour and rostering — your labour as a percentage of revenue, how to read it against your actual trade rather than against a generic benchmark, and how to restructure a roster that's bleeding money without losing the team you've spent years building. This is usually where the biggest savings hide.
+
+Weeks five and six are menu engineering: which dishes are carrying the kitchen and which ones are dragging you down, how to reprice in a way the dining room doesn't notice, and how to build a menu that holds its margin when produce costs start moving on you (which they always do).
+
+And then the final two weeks are about the conversation with ownership — P&amp;L literacy, how to pitch a capex decision and actually win it, how to hold your ground when the numbers are on your side and the owner is pushing back. That's the layer most chefs never get formally taught, and it's the one that changes your career.
+
+By the end of the eight weeks, you're not reading business books about restaurants anymore. You're running one.
+
+[CTA button: Apply now → application page]
+
+Ricardo</div>
+    </div>
+  </div>
+
+  <!-- C3 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 3</span>
+      <span class="pill pill-delay">Delay +3 days</span>
+      <span class="pill pill-new">Qualification</span>
+      <span class="email-title">Who this is for (and who it isn't)</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">Who this is for (and who it isn't)</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Ten seats. I'd rather you self-select out than apply wrong.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+Because Founding Members is small — ten seats and I'm only running it once this year — I think it's worth being honest about who this is for and who it isn't, so nobody applies for the wrong reason and ends up frustrated.
+
+It's for you if you're a head chef, sous chef, or senior CDP moving toward a bigger role, and you already know you're good in the kitchen (that part isn't in question). But when the GM or the owner brings up margins or labour percentages or the P&amp;L, you find yourself nodding through the conversation instead of genuinely engaging with it, because you can't back yourself up with the numbers yet. Or maybe you've been passed over for a promotion already and you know deep down the reason was the business side, not the food side. Or you're already running a place — yours or someone else's — and you know the numbers side of it is more guesswork and gut feel than anything systematic.
+
+It's not for you if you're early in your career. You'll honestly get more out of the free ebook and one of the later cohorts, once you've got real kitchen responsibility to apply the work against. It's also not for you if you're looking for something more academic or passive — this is eight weeks of homework, live calls, and a private group where I will push back on you when your numbers don't add up, which some people love and some people don't. If you want to read business theory and think about it later, this isn't the right fit, and I'd rather tell you that upfront than have you apply and regret it.
+
+If the first description sounds like you, though, apply. I read every application personally, and I'll get back to you either way.
+
+[CTA button: If this is you, apply here → application page]
+
+Ricardo</div>
+    </div>
+  </div>
+
+  <!-- C4 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 4</span>
+      <span class="pill pill-delay">Delay +4 days</span>
+      <span class="pill pill-new">Hard close</span>
+      <span class="email-title">Last call — Cohort 01 closes [specific date]</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">Last call — Cohort 01 closes [specific date]</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">[X] seats left. One direct question before applications close.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+Founding Members, Cohort 01 closes on [specific date], and I've got [X] seats left, so I want to be straight with you before applications close rather than send another soft nudge.
+
+If you've been reading these emails and telling yourself you'll apply "when the time is right," I'd gently push back on that. The chefs who wait for the perfect moment in their career are usually still waiting three years later, in the same kitchen, staring at the same P&amp;L they don't fully understand. The time isn't going to get better on its own — it gets better because you decide to do something about it. And this cohort is the first one I'm running, which means the pricing is the lowest it will ever be, and every cohort after this learns from what Cohort 01 builds. That's worth something if you're thinking about being in it.
+
+If you're a yes, apply before [specific date] and I'll see your application come in. If you're a no, do me a favour and reply to this email — tell me what's holding you back or what doesn't fit. I'd rather hear directly from you than have you quietly disappear off the list, because honestly half the reason I write these emails is to learn where senior chefs are actually stuck.
+
+[CTA button: Apply — [X] seats remaining → application page]
+
+Ricardo
+
+P.S. A few people have asked about a payment plan — yes, the details are on the application page.</div>
+    </div>
+    <div class="note"><strong>Post-send automation (Sean):</strong> apply tag <code>cohort-01-applied</code> if the contact clicked any CTA across the 4 Cohort emails. If no click across all 4, apply tag <code>cohort-01-nonresponse</code> and enrol in the broadcast list.</div>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- CAMPAIGN 2: COA PAID EBOOK DELIVERY & ASCENSION -->
+  <!-- ============================================================ -->
+  <div class="section-hd">
+    <span class="num">02</span>
+    <span class="title">Campaign: COA – Paid Ebook Delivery &amp; Ascension</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="campaign-meta">
+    <strong>Existing campaign. 5 live steps.</strong> Step 1 stays — it's working. Add <strong>4 new steps</strong> at the bottom (new versions of 2, 3, 4, 5). Leave inactive. When Ricardo signs off, reorder or archive the old steps to promote the new ones. Email 3 pitches the standalone Leadership ebook ("You Don't Need to Be an Asshole to Lead a Kitchen"), not a bundle — the bundle checkout isn't live yet.
+  </div>
+
+  <!-- P1 KEEP -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">Step 1 — KEEP</span>
+      <span class="pill pill-delay">Immediate</span>
+      <span class="pill pill-keep">Do not touch</span>
+      <span class="email-title">Welcome. Here's your guide.</span>
+    </div>
+    <div class="note"><strong>Action: none.</strong> Step 1 is live and performing (100% opens, 40% clicks). Do not add a replacement. Only confirm the <code>paid-ebook-buyer</code> tag fires at checkout (see tag audit at the top of this doc).</div>
+  </div>
+
+  <!-- P2 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step (replaces 2)</span>
+      <span class="pill pill-delay">Delay +1 day</span>
+      <span class="pill pill-new">Value, no CTA</span>
+      <span class="email-title">One thing from this worth using today</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">One thing from this worth using today</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Pick three dishes. Run the real numbers. Here's what you'll find.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+If you've flicked through The Business-Minded Chef once already, I want to give you one exercise you can run this week that'll make more of the book actually land, because reading it once without doing anything with it is how most people lose the real value.
+
+Pick the three highest-selling dishes from your sales mix last week — whatever's actually moving, not what you wish was moving — and calculate the real food cost percentage on each one. Not the theoretical cost you wrote on a spec sheet six months ago. The actual cost, with your real wastage included, your real portion variance included, and the produce prices you're currently paying rather than the ones you were paying when the menu was written.
+
+Then compare those numbers to what you assumed they were, and I can almost guarantee you there's a gap there that will surprise you. That gap is usually where the margin you thought you had actually lives, or more often, where it used to live before it quietly disappeared across a year of small leaks that nobody flagged because the weeks all felt fine on the night.
+
+Do it on three dishes. It honestly won't take you more than an hour, and it'll change the next conversation you have with the owner about pricing or margin or menu changes, because you'll walk in with real numbers instead of estimates.
+
+Ricardo
+
+P.S. If you run those numbers and something looks off, reply and tell me what you found. I'm genuinely curious — I read every reply.</div>
+    </div>
+    <div class="note"><strong>No CTA link.</strong> Value-only send. Reply-to should be a monitored inbox so Ricardo can answer.</div>
+  </div>
+
+  <!-- P3 — LEADERSHIP EBOOK (not bundle) -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step (replaces 3)</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">Leadership ebook (standalone)</span>
+      <span class="email-title">There's more where that came from</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">There's more where that came from</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">The leadership side of the job — and why numbers alone don't hold.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+A few days into The Business-Minded Chef — how's it actually landing? I know some readers tear through it in a weekend and others take a month, which is fine either way, but there's something worth flagging early rather than late, because most people don't realise it until they're a few weeks further in and the numbers still aren't quite moving.
+
+The food cost and margin work in that book is one layer, and it's genuinely the first layer you need to get right. But here's the honest part — numbers don't execute themselves. If your team isn't operating consistently day to day, the margins stay broken no matter how well you understand them on paper, because the exact same roster can produce a 32% food cost or a 41% food cost depending on how the team runs a Friday night, and most of that difference is leadership, not pricing.
+
+Which is exactly what my other book, "You Don't Need to Be an Asshole to Lead a Kitchen," is about — the specific dynamics that break down in professional kitchens (turnover, brigade politics, the gap between what you say in pre-service and what actually happens during service) and what to do about them without becoming the kind of chef nobody wants to work for. It's a separate book to the Business-Minded Chef, written to pair with it — one covers the numbers, the other covers the people who have to execute them.
+
+You can pick it up as a standalone for [PRICE]. Most readers tell me the two books together are when it finally clicks for them, because you stop trying to fix a kitchen with spreadsheets alone and start fixing it through the team as well.
+
+[CTA button: Get the Leadership ebook → standalone checkout page]
+
+Ricardo</div>
+    </div>
+    <div class="warn"><strong>Dependencies before this step activates:</strong> (1) confirm the Leadership ebook standalone checkout page is live in Systeme, (2) get the live URL for the CTA button, (3) get the price from Ricardo and replace <code>[PRICE]</code>. If the standalone isn't built either, hold this step inactive and let the sequence jump straight from Step 2 (value) to Step 4 (Cohort intro).</div>
+  </div>
+
+  <!-- P4 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step (replaces 4)</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">Cohort intro (buyer framing)</span>
+      <span class="email-title">A program for chefs who want to go further</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">A program for chefs who want to go further</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Founding Members, Cohort 01. Ten seats. Eight weeks. Direct work with me.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+You bought The Business-Minded Chef, which already tells me something about you — you're actively thinking about the business side of the kitchen and not just content to cook well and hope the rest sorts itself out. That honestly puts you in a smaller group than you'd expect. Most chefs at senior level are excellent technically, but what separates the ones who eventually run their own kitchens or move into ownership is the business layer on top of the technical one, and you've already started building it.
+
+I mention this because I'm running a small cohort called Founding Members, and it's designed specifically for chefs at your stage — people who want to take the ideas in the ebook and apply them directly to their own kitchen, with me working alongside them for eight weeks, rather than just reading about it and trying to figure out the application on their own. Ten seats total, and there are [X seats remaining] in Cohort 01.
+
+If you bought the ebook because you want real change in how you operate (and not just concepts to think about on your commute), this is the logical next step — same material, applied to your real situation, with direct feedback from me when you get stuck or when your numbers don't make sense.
+
+[CTA button: Find out more about Founding Members → application page]
+
+Ricardo</div>
+    </div>
+  </div>
+
+  <!-- P5 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step (replaces 5)</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">Hard close + handoff</span>
+      <span class="email-title">This is the first layer</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">This is the first layer</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">The ebook is one layer. Cohort 01 is where the rest of the work happens.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+I want to close out this sequence by being honest with you about what the ebook actually covers and what it doesn't, because it's easy to finish a book and think you've got the whole picture, and you haven't — not because the book is incomplete, but because a book can only do so much of the work for you.
+
+The ebook covers the first layer: food cost, wastage, margins, and the basic numbers most kitchen professionals are expected to manage without ever having been formally taught how to manage them. That's a huge part of the job and getting it right will genuinely change your kitchen, but it's not the whole thing. Beyond it sits the operational leadership piece, the menu engineering work, the conversation about rostering against real trade patterns, and the financial conversations you need to be able to hold with ownership when they come up — and that's the layer that builds a career rather than just a reputation.
+
+Founding Members Cohort 01 is where that work actually happens, with me, over eight weeks. There are [X seats remaining] and applications close on [specific date], so if you've been thinking about it, now is the moment. If it's not the right time, that's completely fine — you'll keep hearing from me regularly from here on. I write these emails as much for the people who aren't ready yet as for the ones who are, because the situation you're in now isn't the situation you're going to be in forever.
+
+[CTA button: Apply — [X] seats remaining → application page]
+
+And if you've got a question about something specific in the ebook, or about your own numbers, or about whether the cohort is the right fit for you right now, just reply to this email. I read every one.
+
+Ricardo</div>
+    </div>
+    <div class="note"><strong>Post-send automation (Sean):</strong> apply tag <code>paid-sequence-complete</code>, enrol in broadcast list. If the contact clicked the cohort CTA in Step 4 or this step, also tag <code>cohort-01-applied</code> to exclude them from the standalone Cohort 01 Recruitment campaign and avoid duplicate contact.</div>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- CAMPAIGN 3: COA – EBOOK – CORE SEQUENCE -->
+  <!-- ============================================================ -->
+  <div class="section-hd">
+    <span class="num">03</span>
+    <span class="title">Campaign: COA – Ebook – Core Sequence</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="campaign-meta">
+    <strong>Existing campaign. 18 live steps — rebuilt down to 6.</strong> Entry trigger: new free-ebook subscriber who is NOT tagged as a paid buyer. Existing problem: too long (12+ emails with no offer until email 11) and no exit path — 121 contacts currently sitting in the old sequence with nowhere to go. Action: add all 6 new steps at the bottom of the campaign, leave inactive. Once Ricardo signs off, archive or deactivate the old 18 steps and promote these to live. Set a post-sequence automation that tags anyone who doesn't convert as <code>core-sequence-complete</code> and enrols them in the broadcast list. No subscriber exits into silence.
+  </div>
+
+  <!-- CS1 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 1</span>
+      <span class="pill pill-delay">Day 0</span>
+      <span class="pill pill-new">Delivery</span>
+      <span class="email-title">Your ebook + where to start</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">Your ebook + where to start</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Start with Chapter 3. Most people skip it. It's the one that changes everything.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+Your copy of The Business-Minded Chef is ready.
+
+[CTA button: Download your ebook here → ebook download or hosted PDF]
+
+Start with Chapter 3 — the food cost section. Most people skip it. It's also the one that changes how you read every purchase order you write from this point forward.
+
+Read one chapter tonight. That's enough to start with.
+
+Ricardo</div>
+    </div>
+    <div class="note"><strong>Build note:</strong> Keep short. Current delivery email runs at 47% opens / 24% clicks — don't add length or extra CTAs. This replaces the original "Your Premium E-book is here — but read this first" subject (remove em dash).</div>
+  </div>
+
+  <!-- CS2 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 2</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">Pure value, no CTA</span>
+      <span class="email-title">Most chefs miss this part</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">Most chefs miss this part</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Dish cost vs food cost percentage — why the difference matters.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+Most chefs I've met can tell you within a few dollars what a dish costs to make.
+
+Very few of them can tell me their actual food cost percentage for the week.
+
+There's a difference. And it matters more than most people realise.
+
+A dish that costs $8 to produce and sells for $28 looks like it's working. But if your portioning is inconsistent, your wastage isn't tracked, and your team is prepping more than you're selling — that $8 number becomes fiction by Friday.
+
+The percentage tells the real story. Not the dish cost. The percentage.
+
+Chapter 3 of the ebook covers how to calculate this properly, and what a realistic target looks like for different kitchen types. If you haven't read it yet, start there.
+
+Ricardo
+
+P.S. If you have a question about your own food cost numbers, reply directly. I read every one.</div>
+    </div>
+    <div class="note"><strong>Build note:</strong> No CTA link — value-only send. Subject line is already in the current Core Sequence running at 52% opens; keep it exactly as is. Reply-to must be a monitored inbox.</div>
+  </div>
+
+  <!-- CS3 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 3</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">Ricardo's story</span>
+      <span class="email-title">What this looked like in a real kitchen</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">What this looked like in a real kitchen</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">A Tuesday morning, a P&amp;L that made no sense, and the moment it clicked.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+There's a specific moment I remember from running my first kitchen properly.
+
+Not the first time I cooked for a full house. Not when a customer sent a compliment through. The moment I'm thinking of happened on a Tuesday morning, looking at a P&amp;L that made no sense to me.
+
+Revenue was up. The room had been full most of the week. But the numbers on the page said I'd barely broken even.
+
+I didn't understand it. I was a good chef. I knew my food. I knew my team. But I had no idea what was actually happening with the money.
+
+That gap — between being excellent in the kitchen and understanding how the business works — is what I've spent years trying to close. For myself first. Then for other chefs.
+
+If any of this sounds familiar, reply and let me know where you're at. I'd genuinely like to know.
+
+Ricardo</div>
+    </div>
+    <div class="note"><strong>Build note:</strong> Reply invite only, no external link. Seeds the offer without naming it yet.</div>
+  </div>
+
+  <!-- CS4 -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 4</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">Pattern interrupt</span>
+      <span class="email-title">Why some chefs move up and others don't</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">Why some chefs move up and others don't</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">The most talented aren't always the ones who move up. Here's what is.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+I've hired a lot of chefs over the years.
+
+The ones who moved up fastest weren't always the most talented in the kitchen. Some of them were. But talent at a certain level is common. What's less common is understanding how the operation works as a business.
+
+The chefs who moved into senior roles — who eventually ran their own kitchens or opened their own places — were the ones who could read a P&amp;L, manage a labour budget, have an honest conversation with ownership about food cost. They could translate kitchen decisions into financial outcomes.
+
+That skill doesn't come from cooking more. It comes from learning a different set of things.
+
+One of my students — a head chef who had been passed over for promotion twice — told me six months after going through the program that his GM started including him in financial meetings for the first time. The biggest change, he said, was knowing what questions to ask.
+
+That's what this is about.
+
+Ricardo</div>
+    </div>
+    <div class="note"><strong>Build note:</strong> If Ricardo has a specific named student outcome with real numbers, swap it in for the generic one. Optional soft CTA to a testimonial page if wanted, otherwise no link.</div>
+  </div>
+
+  <!-- CS5 — FIRST OFFER -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 5</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">First offer — Cohort named</span>
+      <span class="email-title">Something I want to show you</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">Something I want to show you</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">Ten seats. Eight weeks. Direct work with me on your real numbers.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+I want to tell you about something I've been building.
+
+It's called Founding Members. It's a small cohort program — 10 people maximum — where I work directly with chefs over eight weeks to apply everything in The Business-Minded Chef to their actual situation. Not in theory. In their kitchen, with their real numbers.
+
+We start with food cost and wastage reduction. Then labour and roster management. Then menu engineering and pricing. By the end of the eight weeks, every person in the cohort has a P&amp;L they understand and a set of operational habits that hold.
+
+There are [X seats remaining] in Founding Members, Cohort 01. This is the first time I've run it. The pricing for Founding Members reflects that — it won't be offered at this price again.
+
+If you've been reading these emails and thinking "I need someone to help me apply this to where I actually am" — this is that.
+
+[CTA button: Find out more and apply here → Founding Members application page]
+
+Ricardo</div>
+    </div>
+    <div class="note"><strong>Build note:</strong> First email in the sequence with an offer. Subject is already running at 47% opens in the old sequence — keep. Replace <code>[X seats remaining]</code> with Ricardo's confirmed number before activation.</div>
+  </div>
+
+  <!-- CS6 — HARD CLOSE -->
+  <div class="email-card">
+    <div class="email-card-hd">
+      <span class="pill pill-step">New Step 6</span>
+      <span class="pill pill-delay">Delay +2 days</span>
+      <span class="pill pill-new">Hard close + handoff</span>
+      <span class="email-title">Last seats. A direct question.</span>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Subject</div>
+      <div class="paste-field-value subject">Last seats. A direct question.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Preview text</div>
+      <div class="paste-field-value preview">[X] seats. One straight question before the gate closes.</div>
+    </div>
+    <div class="paste-field">
+      <div class="paste-field-label">Body</div>
+      <div class="paste-field-value body">Hi {first_name},
+
+Founding Members, Cohort 01 starts soon. I have [X] seats left.
+
+I want to ask you something directly.
+
+Are you at a point in your career where the business side of the kitchen is the thing holding you back? Not your cooking. Not your team. The numbers, the margins, the conversations with ownership that you're not fully confident in yet.
+
+If yes — this is the right time to apply. The program is built for exactly that situation.
+
+If the timing isn't right, that's fine. Reply and tell me where you're at. I'd rather know than have you sitting on the fence after the close date.
+
+Applications close [specific date]. After that, remaining seats move to the waitlist for Cohort 02.
+
+[CTA button: Apply — [X] seats remaining → application page]
+
+Ricardo
+
+P.S. If you've looked at the page and you're waiting on something specific — reply and ask me directly. I'll give you a straight answer.</div>
+    </div>
+    <div class="note"><strong>Post-send automation (Sean):</strong> tag all non-converters <code>core-sequence-complete</code> and enrol in the broadcast list. If the contact clicked the cohort CTA in Step 5 or Step 6, also tag <code>cohort-01-applied</code> so they're excluded from the standalone Cohort 01 Recruitment campaign.</div>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- SIGN-OFF -->
+  <!-- ============================================================ -->
+  <div class="section-hd">
+    <span class="num">04</span>
+    <span class="title">Placeholders to fill before anything activates</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="checklist">
+    <h3>Ricardo</h3>
+    <ol>
+      <li>Confirm Cohort 01 <strong>seat count</strong> (appears in Cohort 01 E1, E4; Paid Ebook E4, E5; Core Sequence E5, E6). Replace every <code>[X]</code> and <code>[X seats remaining]</code>.</li>
+      <li>Confirm Cohort 01 <strong>application close date</strong> (appears in Cohort 01 E1 and E4, Paid Ebook E5, Core Sequence E6). Replace every <code>[specific date]</code>.</li>
+      <li>Confirm the <strong>Leadership ebook standalone price</strong> for Paid Ebook E3. Replace <code>[PRICE]</code>.</li>
+      <li>Optional for Core Sequence E4 — provide a specific named student testimonial with real numbers to replace the generic example.</li>
+      <li>Review and sign off all 15 emails across the three campaigns.</li>
+    </ol>
+  </div>
+
+  <div class="checklist">
+    <h3>Sean</h3>
+    <ol>
+      <li>Run the three-point tag audit at the top of this doc before anything activates.</li>
+      <li>Confirm the <strong>Leadership ebook standalone checkout is live in Systeme</strong> and provide the URL for Paid Ebook E3 CTA. If not live, hold Paid Ebook E3 inactive and let the sequence jump from Step 2 to Step 4.</li>
+      <li>Confirm the <strong>Founding Members application page URL</strong> is live and plug it into every Cohort, Paid Ebook and Core Sequence CTA.</li>
+      <li>For the Core Sequence rebuild: add all 6 new steps at the bottom of the existing campaign (leave inactive), then archive/deactivate the 18 legacy steps once Ricardo signs off. Set post-sequence automation to tag non-converters <code>core-sequence-complete</code> and enrol in the broadcast list — no subscriber exits into silence.</li>
+      <li>Confirm mutual exclusion: anyone tagged <code>paid-ebook-buyer</code> must be blocked from entering the Core Sequence; anyone tagged <code>cohort-01-applied</code> must be blocked from the standalone Cohort 01 Recruitment campaign.</li>
+      <li>Apply UTMs to every CTA link before any send: <code>utm_source=email</code>, <code>utm_medium=sequence</code>, <code>utm_campaign=[campaign-name]</code>, <code>utm_content=email-[number]</code>.</li>
+      <li>Set post-send automations noted on Cohort E4, Paid Ebook E5 and Core Sequence E6.</li>
+    </ol>
+  </div>
+
+</main>
+
+</body>
+</html>
