@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef's Office — Weekly Plan — 23 April</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #1F2A44;
+    --navy-deep:   #141c2e;
+    --navy-mid:    #2C3E5D;
+    --gold:        #C7A86D;
+    --gold-light:  #dfc08a;
+    --beige:       #E6D9C3;
+    --beige-pale:  #f5f0e8;
+    --charcoal:    #333333;
+    --muted:       #6b7280;
+    --white:       #ffffff;
+    --antonio-bg:  #daeaf6;
+    --antonio-text:#1F4E79;
+    --sean-bg:     #fdf0d5;
+    --sean-text:   #7B4F00;
+    --both-bg:     #e8f5e9;
+    --both-text:   #2E7D32;
+    --danger:      #8b3333;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f0ece4;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--navy-deep);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(199,168,109,0.03) 40px,
+      rgba(199,168,109,0.03) 41px
+    );
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 48px 56px;
+    position: relative;
+  }
+  .brand-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(199,168,109,0.3);
+    max-width: 200px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .header-title span { color: var(--gold); }
+  .header-sub {
+    font-size: 15px;
+    color: var(--beige);
+    opacity: 0.75;
+    margin-top: 14px;
+    font-weight: 300;
+  }
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  .meta-value {
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .gold-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    width: 100%;
+  }
+
+  /* LAYOUT */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 48px 80px;
+  }
+
+  /* SECTION */
+  .section { margin-bottom: 64px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    opacity: 0.8;
+    min-width: 32px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(199,168,109,0.1));
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 28px 32px;
+    border: 1px solid rgba(31,42,68,0.08);
+    box-shadow: 0 2px 12px rgba(31,42,68,0.05);
+  }
+  .card p {
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .card p strong { color: var(--navy); }
+
+  /* CONTEXT GRID */
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .context-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 24px 28px;
+    border: 1px solid rgba(31,42,68,0.08);
+  }
+  .context-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .context-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .context-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .goal-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .goal-list li {
+    font-size: 14px;
+    color: var(--charcoal);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .goal-list li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* SPLIT TABLE */
+  .split-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(31,42,68,0.1);
+    box-shadow: 0 2px 16px rgba(31,42,68,0.07);
+  }
+  .split-col { display: flex; flex-direction: column; }
+  .split-head {
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .split-head.antonio { background: var(--navy); }
+  .split-head.sean    { background: var(--gold); }
+  .split-head-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .split-head.sean .split-head-name { color: var(--navy-deep); }
+  .split-head-role {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-left: auto;
+    font-weight: 300;
+  }
+  .split-head.sean .split-head-role { color: rgba(20,28,46,0.6); }
+  .split-body {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .split-col:first-child .split-body { background: #EBF0F8; }
+  .split-col:last-child  .split-body { background: var(--sean-bg); }
+  .split-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .split-item::before {
+    content: '▸';
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* WEEKLY TABLES */
+  .week-block {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(31,42,68,0.08);
+    box-shadow: 0 2px 16px rgba(31,42,68,0.06);
+    margin-bottom: 28px;
+  }
+  .week-block-header {
+    background: var(--navy);
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .week-block-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--white);
+    font-weight: 700;
+  }
+  .week-block-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .week-note {
+    padding: 14px 28px;
+    background: #f8f6f2;
+    font-size: 13px;
+    color: var(--muted);
+    border-bottom: 1px solid rgba(31,42,68,0.06);
+    font-style: italic;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: #f0ece4; }
+  thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--navy);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    border-bottom: 2px solid rgba(31,42,68,0.1);
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(31,42,68,0.06);
+  }
+  tbody tr:last-child { border-bottom: none; }
+  td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--charcoal);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .td-area {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--navy);
+    font-weight: 500;
+    white-space: nowrap;
+    width: 120px;
+  }
+  .td-owner { width: 110px; }
+  .td-notes {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .owner-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .owner-antonio { background: var(--antonio-bg); color: var(--antonio-text); }
+  .owner-sean    { background: var(--sean-bg);    color: var(--sean-text);    }
+  .owner-both    { background: var(--both-bg);    color: var(--both-text);    }
+
+  .status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .status-done     { background: #e8f5e9; color: #2E7D32; }
+  .status-progress { background: #fdf0d5; color: #7B4F00; }
+  .status-next     { background: #daeaf6; color: #1F4E79; }
+  .td-status { width: 110px; }
+
+  /* HOLD BOX */
+  .hold-box {
+    background: #fdf4f4;
+    border: 1px solid rgba(139,51,51,0.15);
+    border-left: 4px solid var(--danger);
+    border-radius: 8px;
+    padding: 24px 28px;
+  }
+  .hold-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--danger);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .hold-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+  .hold-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .hold-box ul li {
+    font-size: 14px;
+    color: var(--charcoal);
+    padding-left: 18px;
+    position: relative;
+  }
+  .hold-box ul li::before {
+    content: '-';
+    position: absolute;
+    left: 0;
+    color: var(--danger);
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--navy-deep);
+    padding: 32px 48px;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .footer-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(230,217,195,0.4);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    .header-inner { padding: 40px 24px 36px; }
+    .main { padding: 32px 24px 60px; }
+    .context-grid { grid-template-columns: 1fr; }
+    .split-table  { grid-template-columns: 1fr; }
+    .header-meta  { gap: 20px; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="gold-bar"></div>
+  <div class="header-inner">
+    <div class="brand-eyebrow">Chef's Office Academy</div>
+    <h1 class="header-title">Weekly <span>Recap &amp; Plan</span></h1>
+    <p class="header-sub">Progress since 14 April and the priorities for the week ahead — activation, email, and tracking.</p>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-label">Week of</span>
+        <span class="meta-value">23 April 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Client</span>
+        <span class="meta-value">Ricardo Calderini</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Phase</span>
+        <span class="meta-value">Phase 1 — Infrastructure &amp; Activation</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Horizon</span>
+        <span class="meta-value">2-month sprint</span>
+      </div>
+    </div>
+  </div>
+  <div class="gold-bar"></div>
+</header>
+
+<main class="main">
+
+  <!-- 01. CONTEXT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Where we are</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="context-grid">
+      <div class="context-card">
+        <div class="context-card-label">Since 14 April</div>
+        <h3>Foundations are holding</h3>
+        <p>The funnel rebuild, ad cleanup, and weekly content cadence are all in place. Ad cost is down ~150% on like-for-like creative. The logo issue on the homepage is resolved. Three posts are scheduled and live this week. Fresh email sequences have been drafted in Systeme and are ready to replace the live versions across all three campaigns.</p>
+      </div>
+      <div class="context-card">
+        <div class="context-card-label">Priority focus</div>
+        <h3>Activate the email engine</h3>
+        <p>This week is about turning the CRM list into revenue. The new sequences go live, replacing the existing emails across the three Systeme campaigns. The founding member application page gets its backend fixed so leads are actually captured and tagged. GMB and the broken search result get closed out in parallel.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p><strong>This week's focus:</strong> Replace the live email sequences in Systeme with the new drafted versions across all three campaigns. Fix the founding member application so it captures and tags leads. Close out Google My Business and the broken 2019 search link. Keep posting daily. Hold spend steady while the new email flow warms up.</p>
+    </div>
+  </section>
+
+  <!-- 02. RESPONSIBILITY SPLIT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Responsibility split</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="split-table">
+      <div class="split-col">
+        <div class="split-head antonio">
+          <span class="split-head-name">Antonio</span>
+          <span class="split-head-role">Strategy, copy &amp; paid</span>
+        </div>
+        <div class="split-body">
+          <div class="split-item">Funnel architecture and copy across all pages</div>
+          <div class="split-item">Email sequence rewrite — drafts ready in Systeme</div>
+          <div class="split-item">Content calendar, caption copy and weekly post scheduling</div>
+          <div class="split-item">Google Tag Manager implementation and UTM framework</div>
+          <div class="split-item">Google Ads setup and campaign management</div>
+          <div class="split-item">Creative direction for ad variations and A/B tests</div>
+          <div class="split-item">Financial IQ Quiz funnel architecture and copy</div>
+        </div>
+      </div>
+      <div class="split-col">
+        <div class="split-head sean">
+          <span class="split-head-name">Sean</span>
+          <span class="split-head-role">Tech, Meta &amp; Systeme</span>
+        </div>
+        <div class="split-body">
+          <div class="split-item">Meta account management, pixel and campaign execution</div>
+          <div class="split-item">Systeme.io sequence replacement and automation flows</div>
+          <div class="split-item">Fix founding member application lead capture (backend)</div>
+          <div class="split-item">GA4 setup and integration</div>
+          <div class="split-item">Google My Business audit and cleanup</div>
+          <div class="split-item">Fix broken 2019 Google Search result</div>
+          <div class="split-item">Google Workspace setup on chefsoffice.com.au</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03. RECAP — DONE SINCE 14 APRIL -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">What was completed since 14 April</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-block-header">
+        <span class="week-block-title">Completed work</span>
+        <span class="week-block-tag">Recap</span>
+      </div>
+      <div class="week-note">Everything in this block is live or finalised. The items carry forward only as context — no further work required.</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="td-area">Area</th>
+            <th class="td-owner">Owner</th>
+            <th>What was done</th>
+            <th class="td-status">Status</th>
+            <th class="td-notes">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-area">Website</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Fixed the logo display issue at the bottom of the site. Correct logo now sits site-wide.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Resolves the point raised in the last review.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Funnel</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Funnel architecture and copy rebuilt across all pages of chefsoffice.com.au. Value ladder, CTAs, page flow and messaging hierarchy aligned.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Site is clean and ready to receive traffic.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Website copy</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Removed all consulting / individual consultation language across the site to align with the B2B (restaurant groups) positioning.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Homepage, nav, meta descriptions and footer all updated.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Email drafts</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>New email copy drafted in Systeme for all three campaigns (Paid eBook Delivery, Ascension, Cohort). Drafts ready to replace the existing live emails.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Shorter sequences, tighter CTAs, pointing to the founding member application page.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Content</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Three posts scheduled and live this week. Weekly posting cadence is holding with no gaps.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Posts live through the week, sent for review in parallel.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Funnel page</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Built the New Founding Member Application page in Systeme to replace the original Google Form as the primary cohort entry point.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Page is live. Backend lead capture still needs configuring — see Section 04.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Ad cleanup</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Meta account cleaned up. Pixel in place. Ad spend efficiency improved with ~150% reduction in cost on like-for-like creative.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Baseline numbers now stable enough to plan a controlled spend increase once email converts.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Creative</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>New ad creative variations produced and staged for A/B testing against existing proven creatives.</td>
+            <td class="td-status"><span class="status-pill status-done">Done</span></td>
+            <td class="td-notes">Variations ready to rotate in once the email flow is live.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 04. THIS WEEK'S TASKS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">This week's tasks</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <!-- EMAIL & CRM -->
+    <div class="week-block">
+      <div class="week-block-header">
+        <span class="week-block-title">Email &amp; CRM</span>
+        <span class="week-block-tag">Priority</span>
+      </div>
+      <div class="week-note">The single biggest unlock this week. The list is large, untapped, and the new sequences are ready — we just need to swap them live and wire up the automation.</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="td-area">Area</th>
+            <th class="td-owner">Owner</th>
+            <th>Task</th>
+            <th class="td-status">Status</th>
+            <th class="td-notes">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-area">Replace sequences</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Replace the existing live emails in Systeme with the new drafted versions across all three campaigns (Paid eBook Delivery, Ascension, Cohort). Keep the in-built Welcome Your Guide email at the top of each.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Drafts are ready in Systeme. Cadence: one email every 2–3 days.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Automation</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Connect the new sequences to the correct automation triggers in Systeme so subscribers flow from campaign to campaign without manual intervention.</td>
+            <td class="td-status"><span class="status-pill status-next">Next</span></td>
+            <td class="td-notes">Contacts are already flowing in from Meta. The pipe just needs wiring.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Founding member page</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Fix the backend of the New Founding Member Application page so submissions actually capture the lead and apply the right tag. The page is live, but test submissions are not being recorded.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">This page is linked from every email that references the cohort. Until the backend is fixed, those leads are being lost.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Email link audit</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Run through each new email and confirm every cohort CTA points to the new founding member application page (not the old Google Form).</td>
+            <td class="td-status"><span class="status-pill status-next">Next</span></td>
+            <td class="td-notes">Quick check; pairs with the backend fix above.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Existing buyers</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Identify past purchasers in Systeme and draft a targeted email offering the Menu Engineering module at a preferential rate. Send via email, not paid retargeting.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Cheaper and higher-intent than running retargeting ads at the same audience.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TECHNICAL SETUP -->
+    <div class="week-block">
+      <div class="week-block-header">
+        <span class="week-block-title">Technical Setup</span>
+        <span class="week-block-tag">Infrastructure</span>
+      </div>
+      <div class="week-note">Close the tracking and trust gaps before any spend increase. Each item has a direct impact on attribution or deliverability.</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="td-area">Area</th>
+            <th class="td-owner">Owner</th>
+            <th>Task</th>
+            <th class="td-status">Status</th>
+            <th class="td-notes">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-area">GTM / UTM</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Implement Google Tag Manager and the UTM framework so every traffic source is attributed cleanly across the funnel.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Starts this evening. Prerequisite for reporting on paid vs. organic vs. email.</td>
+          </tr>
+          <tr>
+            <td class="td-area">GA4</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Stand up the Google Analytics 4 property, tag key conversion events (quiz starts, ebook purchases, form submissions) and link GTM.</td>
+            <td class="td-status"><span class="status-pill status-next">Next</span></td>
+            <td class="td-notes">Pairs with GTM above. No tracking story until both are live.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Google My Business</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Audit and clean up the Google My Business profile. Remove outdated info, confirm category, add correct website link.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Targeted for completion this week.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Broken link</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Locate and fix the broken 2019 Google Search result. Either redirect the URL to a live page or remove it from the index.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Will be actioned alongside the GMB cleanup.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Google Workspace</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Connect chefsoffice.com.au to a Google Workspace account and set up a professional send address (e.g. hello@chefsoffice.com.au) for outbound email.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Needed before email volume ramps up. Improves deliverability and trust.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CONTENT & ADS -->
+    <div class="week-block">
+      <div class="week-block-header">
+        <span class="week-block-title">Content &amp; Advertising</span>
+        <span class="week-block-tag">Growth</span>
+      </div>
+      <div class="week-note">Maintain the cadence, hold spend, let the new email flow do the heavy lifting this week.</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="td-area">Area</th>
+            <th class="td-owner">Owner</th>
+            <th>Task</th>
+            <th class="td-status">Status</th>
+            <th class="td-notes">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-area">Daily posting</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Continue weekly post cadence. Three posts scheduled and live this week; next week's batch prepared and sent for approval.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Consistency is the strategy. No gap, no "we're back" framing.</td>
+          </tr>
+          <tr>
+            <td class="td-area">A/B creative test</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Rotate the new creative variations in against the existing proven creatives on the Menu Engineering module campaign. Monitor weekly.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Separate ad sets per variation. Do not blend audiences between tests.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Budget</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Hold current budget while the new email sequences warm up. Recommend a 15–20% incremental increase once ROAS is confirmed on the combined email + paid flow.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Do not scale spend until positive ROAS is verified.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Google Ads</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Begin Google Ads account setup and campaign planning. Scope a first search campaign targeting chef-specific, high-intent queries.</td>
+            <td class="td-status"><span class="status-pill status-next">Next</span></td>
+            <td class="td-notes">Kicks off this week, goes live next week once GA4/GTM are in place.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PRODUCT & FUNNEL -->
+    <div class="week-block">
+      <div class="week-block-header">
+        <span class="week-block-title">Product &amp; Funnel</span>
+        <span class="week-block-tag">Revenue</span>
+      </div>
+      <div class="week-note">Modules are the primary revenue vehicle. Quiz funnel and the engineer module should both be active and converting.</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="td-area">Area</th>
+            <th class="td-owner">Owner</th>
+            <th>Task</th>
+            <th class="td-status">Status</th>
+            <th class="td-notes">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-area">Menu Engineering</td>
+            <td class="td-owner"><span class="owner-pill owner-sean">Sean</span></td>
+            <td>Confirm the Menu Engineering module is live in Systeme with correct pricing, checkout and thank-you flow. Push live on the website once confirmed.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Module file currently in Dropbox; not yet published on the site.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Quiz funnel</td>
+            <td class="td-owner"><span class="owner-pill owner-both">Both</span></td>
+            <td>Review the Financial IQ Quiz in Systeme. Confirm it is linked from the site and routes correctly into the funnel. Fix any broken connections.</td>
+            <td class="td-status"><span class="status-pill status-progress">In Progress</span></td>
+            <td class="td-notes">Quiz is live but currently unlinked. Antonio leads copy/routing; Sean leads the Systeme build.</td>
+          </tr>
+          <tr>
+            <td class="td-area">Module roadmap</td>
+            <td class="td-owner"><span class="owner-pill owner-antonio">Antonio</span></td>
+            <td>Finalise the 90-day module roadmap with Ricardo. Confirm pricing tiers — modules individually priced, full academy bundled, subscription as the top tier.</td>
+            <td class="td-status"><span class="status-pill status-next">Next</span></td>
+            <td class="td-notes">Pricing discussion to be closed in the next check-in.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- 05. NEXT 2 MONTHS -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Horizon — next two months</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="context-grid">
+      <div class="context-card">
+        <div class="context-card-label">Checkpoints</div>
+        <h3>Two-month milestones</h3>
+        <ul class="goal-list">
+          <li>New email sequences live across all three campaigns and generating revenue</li>
+          <li>Founding member application capturing leads reliably end-to-end</li>
+          <li>GA4, GTM and UTM framework fully operational</li>
+          <li>Google Workspace and professional email active on chefsoffice.com.au</li>
+          <li>Google My Business profile clean and verified, broken search link resolved</li>
+          <li>Google Ads live on high-intent chef queries</li>
+          <li>Financial IQ Quiz driving leads into the top of the funnel</li>
+          <li>Ad budget increased 15–20% once ROAS is confirmed</li>
+        </ul>
+      </div>
+      <div class="context-card">
+        <div class="context-card-label">Multi-touch strategy</div>
+        <h3>How people buy</h3>
+        <ul class="goal-list">
+          <li>First touch: Facebook or Instagram ad</li>
+          <li>Second touch: Instagram organic or retargeting</li>
+          <li>Third touch: email sequence or direct website visit</li>
+          <li>Conversion: module purchase or quiz completion leading to module</li>
+          <li>Upsell: existing buyers emailed directly (not retargeted via ads)</li>
+          <li>Long-term: full academy, then subscription</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06. ON HOLD -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">On hold this sprint</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="hold-box">
+      <div class="hold-label">Not in scope this week</div>
+      <div class="hold-title">These items are deferred until the current foundations are in place</div>
+      <ul>
+        <li>New creative production beyond the current A/B test — focus is on running what we have</li>
+        <li>B2B restaurant outreach — wait for Google Workspace and GMB to be clean first</li>
+        <li>Full academy launch — modules first, academy bundle once individual modules are proven</li>
+        <li>Subscription product — future tier, not a current priority</li>
+        <li>AI Applied to the Kitchen digital product — timeline to be confirmed with Ricardo</li>
+        <li>Platform / motherboard preview — dependency on third-party developer; follow-up in progress</li>
+        <li>Zapier or other third-party automation tools — Systeme handles the full stack</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Chef's Office Academy</span>
+    <span class="footer-meta">Weekly Plan — 23 April 2026 — Confidential</span>
+  </div>
+</footer>
+
+</body>
+</html>
