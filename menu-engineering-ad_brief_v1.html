@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meta Ads — Menu Engineering | Chef's Office Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0E1B2A;
+    --navy-2: #16263B;
+    --navy-3: #1F3148;
+    --navy-deep: #08121E;
+    --gold: #C9A24A;
+    --gold-light: #E0C078;
+    --gold-soft: rgba(201,162,74,0.18);
+    --cream: #F4EBD8;
+    --white: #FFFFFF;
+    --white-90: rgba(255,255,255,0.90);
+    --white-70: rgba(255,255,255,0.70);
+    --white-50: rgba(255,255,255,0.50);
+    --white-30: rgba(255,255,255,0.30);
+    --white-10: rgba(255,255,255,0.10);
+    --white-05: rgba(255,255,255,0.05);
+    --max: 1080px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--navy-deep); color: var(--white-90); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+  .hero {
+    background:
+      radial-gradient(ellipse at center top, rgba(50,65,88,0.6) 0%, transparent 70%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    padding: 100px 32px 80px;
+    border-bottom: 1px solid rgba(201,162,74,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 60px; height: 60px;
+    border: 2px solid var(--gold);
+    opacity: 0.5;
+  }
+  .hero::before { top: 32px; left: 32px; border-right: none; border-bottom: none; }
+  .hero::after { top: 32px; right: 32px; border-left: none; border-bottom: none; }
+
+  .hero-inner { max-width: var(--max); margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 64px;
+    line-height: 1.05;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    font-size: 20px;
+    color: var(--white-70);
+    max-width: 640px;
+    margin: 0 auto 36px;
+    line-height: 1.5;
+  }
+  .meta-bar {
+    display: inline-flex;
+    gap: 32px;
+    padding: 14px 28px;
+    border: 1px solid rgba(201,162,74,0.4);
+    border-radius: 30px;
+    background: rgba(0,0,0,0.3);
+    font-size: 13px;
+    color: var(--white-70);
+    letter-spacing: 1px;
+  }
+  .meta-bar strong { color: var(--gold); font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; font-size: 11px; }
+
+  section {
+    padding: 80px 32px;
+    border-bottom: 1px solid var(--white-05);
+  }
+  section:last-of-type { border-bottom: none; }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 24px;
+    margin: 32px 0 16px;
+    font-weight: 500;
+  }
+  p { color: var(--white-70); margin-bottom: 18px; max-width: 760px; }
+  p strong { color: var(--white); font-weight: 500; }
+  em { color: var(--gold-light); font-style: normal; font-family: 'Playfair Display', serif; }
+
+  /* KPI cards */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .kpi {
+    background: var(--white-05);
+    border: 1px solid rgba(201,162,74,0.2);
+    border-radius: 8px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .kpi .v {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 38px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .kpi .k { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--white-50); }
+
+  /* Carousel grid */
+  .carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 32px 0;
+  }
+  .card {
+    aspect-ratio: 4/5;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--navy);
+    position: relative;
+    border: 1px solid var(--white-10);
+  }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card .label {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+    background: rgba(0,0,0,0.7);
+    padding: 4px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+
+  /* Video grid */
+  .videos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 32px 0;
+  }
+  .video-block {
+    background: var(--white-05);
+    border: 1px solid var(--white-10);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .video-block video {
+    width: 100%;
+    aspect-ratio: 9/16;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    background: #000;
+    max-height: 600px;
+    object-fit: contain;
+  }
+  .video-block h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .video-block .meta { font-size: 12px; color: var(--white-50); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+
+  /* Copy variants */
+  .copy-block {
+    background: var(--white-05);
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+    margin: 18px 0;
+    border-radius: 0 6px 6px 0;
+    color: var(--white);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .copy-block .v-label {
+    display: block;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .copy-block p { color: var(--white-90); margin-bottom: 12px; max-width: none; }
+
+  .pill-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+  .pill {
+    background: var(--white-05);
+    border: 1px solid var(--white-10);
+    color: var(--white);
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  .pill.gold { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-light); }
+
+  /* Tables */
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .tbl th, .tbl td {
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--white-10);
+  }
+  .tbl th {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: var(--white-05);
+  }
+  .tbl td { color: var(--white-70); }
+  .tbl td:first-child { color: var(--white); font-weight: 500; }
+
+  /* Asset list */
+  .assets { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .asset {
+    background: var(--white-05);
+    padding: 18px 22px;
+    border-radius: 6px;
+    border: 1px solid var(--white-10);
+  }
+  .asset .name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 16px; margin-bottom: 4px; }
+  .asset .path { font-size: 12px; color: var(--white-50); font-family: 'Courier New', monospace; word-break: break-all; }
+
+  .callout {
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    padding: 20px 24px;
+    border-radius: 6px;
+    margin: 24px 0;
+    color: var(--gold-light);
+    font-size: 15px;
+  }
+  .callout strong { color: var(--gold); }
+
+  ol, ul { margin: 18px 0; padding-left: 22px; color: var(--white-70); }
+  ol li, ul li { margin-bottom: 10px; max-width: 760px; }
+  ol li::marker, ul li::marker { color: var(--gold); }
+
+  footer {
+    text-align: center;
+    padding: 60px 32px;
+    border-top: 1px solid var(--white-05);
+    background: var(--navy-deep);
+  }
+  footer p {
+    color: var(--white-50);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    max-width: none;
+    margin: 0;
+  }
+  footer .brand {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 760px) {
+    h1 { font-size: 40px; }
+    h2 { font-size: 28px; }
+    .kpis { grid-template-columns: 1fr; }
+    .carousel-grid { grid-template-columns: repeat(2, 1fr); }
+    .videos { grid-template-columns: 1fr; }
+    .assets { grid-template-columns: 1fr; }
+    section { padding: 56px 24px; }
+    .hero { padding: 80px 24px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Chef's Office Academy · Meta Campaign Brief</div>
+    <h1>Meta Ads:<br>Menu Engineering</h1>
+    <p class="hero-sub">A second creative angle for the active Cold Campaign — built on the menu engineering ebook, voiced for the same audience, optimised to widen the funnel beyond the current Business-Minded Chef ad.</p>
+    <div class="meta-bar">
+      <span><strong>Status</strong><br>In Review · Awaiting Launch</span>
+      <span><strong>Target CPA</strong><br>$22 – $28</span>
+      <span><strong>Format</strong><br>Carousel + 2 Videos</span>
+    </div>
+  </div>
+</header>
+
+<section class="wrap">
+  <span class="section-num">01 — CAMPAIGN READ</span>
+  <h2>What's working today, and what we're adding</h2>
+  <p>The active <strong>Business-Minded Chef Cold Campaign</strong> is producing solid numbers on a single static image with a career-advancement hook. Strong but narrow. The menu engineering creative is a second angle into the same audience, focused on a specific, monetisable benefit: <em>dollars left on the menu.</em></p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">$34.39</div><div class="k">Current CPA (30d)</div></div>
+    <div class="kpi"><div class="v">19</div><div class="k">Website Purchases</div></div>
+    <div class="kpi"><div class="v">~$653</div><div class="k">Spend (30d)</div></div>
+  </div>
+
+  <p>The new ads sit inside the same cold ad set so they share audience signal with the existing creative. No new ad sets, no fragmented learning. Meta's algorithm decides allocation across the three ads based on early performance. Target window: <strong>seven days, then assess on CPA + ROAS.</strong></p>
+</section>
+
+<section class="wrap">
+  <span class="section-num">02 — THE ANGLE</span>
+  <h2>Why menu engineering, why now</h2>
+  <p>The existing ad sells <em>career advancement</em>. The new creative sells a <em>specific commercial skill</em> that's hard to argue with: reading a menu the way the business reads it. The difference shows up in the source material — the ebook is concrete, numerical, and built around a framework chefs have never been formally taught (Stars / Plowhorses / Puzzles / Dogs).</p>
+  <p>Three hooks run through the creative system:</p>
+  <ul>
+    <li><strong>The $6,435 number</strong> — the sirloin vs scotch fillet decision, walked through as a plain-language calculation. Concrete, repeatable, instantly memorable.</li>
+    <li><strong>The four-quadrant menu matrix</strong> — Stars, Plowhorses, Puzzles, Dogs. Vocabulary that gives the chef a language they didn't have before.</li>
+    <li><strong>The owner conversation</strong> — the meeting where food cost is up two points and you're meant to have answers. The book is positioned as the thing that puts you on the right side of that conversation.</li>
+  </ul>
+</section>
+
+<section class="wrap">
+  <span class="section-num">03 — CAROUSEL CREATIVE</span>
+  <h2>Five frames, paced for feed</h2>
+  <p>1080×1350 (Meta's preferred 4:5 feed dimension), built to mirror the dark navy + gold visual system already used across Sean's existing ads so this campaign reads as one. Each frame carries one beat — cover, reframe, the number, the matrix, the close.</p>
+
+  <div class="carousel-grid">
+    <div class="card"><img src="../../03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-1_cover_v1.png" alt="Frame 1 — Cover"><div class="label">01 · Cover</div></div>
+    <div class="card"><img src="../../03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-2_reframe_v1.png" alt="Frame 2 — Reframe"><div class="label">02 · Reframe</div></div>
+    <div class="card"><img src="../../03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-3_numbers_v1.png" alt="Frame 3 — Numbers"><div class="label">03 · $6,435</div></div>
+    <div class="card"><img src="../../03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-4_matrix_v1.png" alt="Frame 4 — Matrix"><div class="label">04 · Matrix</div></div>
+    <div class="card"><img src="../../03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-5_cta_v1.png" alt="Frame 5 — CTA"><div class="label">05 · CTA</div></div>
+  </div>
+
+  <div class="callout">
+    <strong>Upload note for Sean:</strong> Each card needs the destination URL set individually in Meta — confirm all 5 point at <code>/menu-engineering-checkout</code>, not the existing book's URL.
+  </div>
+</section>
+
+<section class="wrap">
+  <span class="section-num">04 — VIDEO CREATIVE</span>
+  <h2>Two cuts for two placements</h2>
+  <p>Two complementary video formats so the campaign indexes well across both feed and Reels. The cinematic cut is paced for considered viewing in the main feed; the Reels cut uses a trending audio reveal and is optimised for short-form scroll on Reels and Stories.</p>
+
+  <div class="videos">
+    <div class="video-block">
+      <h4>Cinematic Cut</h4>
+      <div class="meta">19.6s · 1080×1920 · No audio (add at upload)</div>
+      <video controls preload="metadata" src="../../03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_video_v1.mp4"></video>
+      <p style="font-size:13px;color:var(--white-70);margin:0;">Slow motion typography across seven scenes. Subtle Ken Burns zoom on each scene with crossfades. Built for considered placement (feed, in-stream). Add a low-tempo cinematic underscore from Meta's Sound Collection at upload, mixed at 30–40% volume so it sits under the on-screen text.</p>
+    </div>
+    <div class="video-block">
+      <h4>Reels Cut</h4>
+      <div class="meta">11.9s · 1080×1920 · Audio baked in</div>
+      <video controls preload="metadata" src="../../03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_video_reels-cut_v1.mp4"></video>
+      <p style="font-size:13px;color:var(--white-70);margin:0;">Synced to "The Little Things I Love (Reels Sound — Reveal)". Hard cuts on every beat. The four ascending intro pulses build through the reframe, the drop at five seconds lands the $6,435 reveal, and the sustained beat carries the matrix and CTA out. Loudness normalised to −16 LUFS, true peak −1.5 dB.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <span class="section-num">05 — AD COPY</span>
+  <h2>Primary text variants</h2>
+  <p>Five primary text options, written in the same flowing chef voice as the existing live ad. No formulaic parallel structure, no marketing fragments. Each one teases a specific piece of content from inside the book to build desire.</p>
+
+  <div class="copy-block">
+    <span class="v-label">V1 · The eye for the menu</span>
+    <p>I spent a long time in kitchens before I really understood this. Most chefs look at a menu and see the food, which is exactly what we're trained to do. The owner is looking at the same piece of paper and seeing the single biggest financial document in the venue, and until a chef learns to read it that way too, they're only doing half the job.</p>
+    <p>The Menu Engineering Guide is the short, practical book I wrote to close that gap.</p>
+    <p>Tap below for a copy and start reading your own menu the second way this week.</p>
+  </div>
+
+  <div class="copy-block">
+    <span class="v-label">V2 · The owner question</span>
+    <p>Sooner or later every owner is going to point at the menu and ask which dishes are actually making money. The chefs who can answer with a number are the ones who get pulled into the rest of the conversation about how the business is run. They get handed the menu, they get pulled into the costing meetings, they get asked first when something needs to change.</p>
+    <p>The Menu Engineering Guide gives you that number.</p>
+    <p>If you want to be that chef in that meeting, the link's right below.</p>
+  </div>
+
+  <div class="copy-block">
+    <span class="v-label">V3 · The number told as a story</span>
+    <p>There's a steak example in this book that I keep coming back to. You take sirloin, which contributes about $23.50 a plate, and you compare it to scotch fillet, which when it's priced and positioned the right way contributes about $29. That's $5.50 a dish. Sell forty-five a week through one season and you've put $6,435 onto the bottom line from one decision that took thirty seconds to make.</p>
+    <p>That's the kind of thing this book teaches you to see — not a clever trick, just the practice of looking at your menu the way the business looks at it.</p>
+    <p>Tap below to grab a copy. There are dozens more decisions like that one in the book.</p>
+  </div>
+
+  <div class="copy-block">
+    <span class="v-label">V4 · Seeing it differently</span>
+    <p>Once you've read this book you can't really look at a menu the same way again, and that turns out to be the whole point. You start seeing the bestseller that's punishing the grill for almost no return, the high-margin dish hiding in the wrong column, the contribution leaking quietly out of every section.</p>
+    <p>The Menu Engineering Guide is the short, practical book that gives you the eye for it.</p>
+    <p>Tap the link below and start seeing it on your own menu this week.</p>
+  </div>
+
+  <div class="copy-block">
+    <span class="v-label">V5 · The office conversation</span>
+    <p>You're in the office with the owner, the P&amp;L is open in front of you, and food cost is up two points. You can nod and promise to look into it, or you can open the menu and walk them through where the leak actually is. That second conversation is a different career, and the Menu Engineering Guide is the book that puts you into it.</p>
+    <p>If you want to walk into that next office meeting differently, the book's below.</p>
+  </div>
+
+  <h3>Headlines (under 40 chars)</h3>
+  <div class="pill-list">
+    <span class="pill gold">Read your menu like the owner does.</span>
+    <span class="pill">Four kinds of dishes on every menu.</span>
+    <span class="pill">$6,435 from one menu decision.</span>
+    <span class="pill">The menu, read commercially.</span>
+    <span class="pill">Where the money is hiding on your menu.</span>
+  </div>
+
+  <h3>Descriptions (under 125 chars)</h3>
+  <div class="pill-list">
+    <span class="pill">By Ricardo Calderini. The short book that teaches a chef to read a menu the way the business reads it.</span>
+    <span class="pill">A practical guide for chefs who want their menu to make as much money as it makes sense.</span>
+    <span class="pill">Written by a chef who's run kitchens, built to be read in an afternoon and used the same week.</span>
+    <span class="pill">Closes the gap between cooking the menu and reading it the way the owner does.</span>
+    <span class="pill">By Ricardo Calderini, who's spent a long time watching the same gap kill chefs' careers.</span>
+  </div>
+
+  <h3>Meta CTA + Destination</h3>
+  <p><strong>Button:</strong> Learn More &nbsp;·&nbsp; <strong>URL:</strong> <code style="color:var(--gold-light);background:var(--white-05);padding:4px 8px;border-radius:3px;">https://chefsoffice-launch.systeme.io/menu-engineering-checkout</code></p>
+</section>
+
+<section class="wrap">
+  <span class="section-num">06 — TEST STRUCTURE</span>
+  <h2>Three ads, one ad set, seven days</h2>
+  <p>All three ads sit in the existing Business-Minded Chef Cold ad set so they share audience signal. Meta's algorithm allocates spend based on early performance. No new ad sets, no formal A/B test (which would split the audience and slow learning).</p>
+
+  <table class="tbl">
+    <thead><tr><th>Ad</th><th>Creative</th><th>Lead Headline</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Control</td><td>Existing static (Business-Minded Chef)</td><td>Most chefs never learn this.</td><td>Active</td></tr>
+      <tr><td>Test A — Carousel</td><td>5 frames (cover → numbers → matrix → CTA)</td><td>$6,435 from one menu decision.</td><td>Off · ready to launch</td></tr>
+      <tr><td>Test B — Video</td><td>Reels cut, 11.9s with audio</td><td>Read your menu like the owner does.</td><td>In Review</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>After 7 days:</strong> assess on CPA and ROAS, not CTR alone. Anything beating $34.39 CPA scales. Anything materially worse, retire. Sean keeps the existing static on as the baseline throughout.
+  </div>
+</section>
+
+<section class="wrap">
+  <span class="section-num">07 — ASSETS</span>
+  <h2>Where everything lives</h2>
+  <div class="assets">
+    <div class="asset"><div class="name">Frame 1 — Cover</div><div class="path">/03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-1_cover_v1.png</div></div>
+    <div class="asset"><div class="name">Frame 2 — Reframe</div><div class="path">/03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-2_reframe_v1.png</div></div>
+    <div class="asset"><div class="name">Frame 3 — Numbers</div><div class="path">/03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-3_numbers_v1.png</div></div>
+    <div class="asset"><div class="name">Frame 4 — Matrix</div><div class="path">/03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-4_matrix_v1.png</div></div>
+    <div class="asset"><div class="name">Frame 5 — CTA</div><div class="path">/03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_carousel_frame-5_cta_v1.png</div></div>
+    <div class="asset"><div class="name">Cinematic Video</div><div class="path">/03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_video_v1.mp4</div></div>
+    <div class="asset"><div class="name">Reels Cut</div><div class="path">/03-Deliverables/Creative/menu-engineering-ad/menu-engineering-ad_video_reels-cut_v1.mp4</div></div>
+    <div class="asset"><div class="name">This Brief</div><div class="path">/03-Deliverables/Copy/menu-engineering-ad/menu-engineering-ad_brief_v1.html</div></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <span class="section-num">08 — NOTES</span>
+  <h2>Assumptions and follow-ups</h2>
+  <ul>
+    <li><strong>Price assumption:</strong> $19.97, taken from the existing Business-Minded Chef ebook pricing pattern. Confirm with Sean before launch.</li>
+    <li><strong>Destination URL:</strong> placeholder <code>/menu-engineering-checkout</code> on systeme.io, to be replaced by Sean's final checkout URL.</li>
+    <li><strong>Cinematic video audio:</strong> add at Meta upload via Sound Collection. Search "cinematic", "ambient", "documentary"; select ~80 BPM, no vocals. Mix at 30–40% volume.</li>
+    <li><strong>Reels cut audio:</strong> already baked in. The Reels Sound used is "The Little Things I Love (Reveal)" which is in Meta's collection — using it gives algorithmic lift on the Reels feed.</li>
+    <li><strong>Carousel card URLs:</strong> Meta requires each carousel card to have its own URL set. Confirm all five point at the menu engineering checkout, not the existing book's URL.</li>
+    <li><strong>Author byline:</strong> Ricardo Calderini, per Chef's Office brand guidelines.</li>
+  </ul>
+</section>
+
+<footer>
+  <div class="brand">CHEF'S OFFICE ACADEMY</div>
+  <p>Meta Ads — Menu Engineering · v1 · Prepared by Streetwise Consultancy</p>
+</footer>
+
+</body>
+</html>
